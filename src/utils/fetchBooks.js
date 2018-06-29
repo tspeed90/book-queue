@@ -10,7 +10,6 @@ const checkResponse = response => {
 
 export const getBooks = listName => {
   const url = 'http://api.nytimes.com/svc/books/v3/lists.json';
-  console.log(process.env);
   return fetch(`${url}?list-name=${listName}&api-key=${apiKey}`)
     .then(checkResponse)
     .then(json => console.log(json))
