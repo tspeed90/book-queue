@@ -19,15 +19,26 @@ export default class Browse extends React.Component {
 
   render() {
     const { bookList } = this.state;
-    return bookList.map(book => {
-      return (
-        <div>
-          <img src="" alt="" />
-          <div>
-            <p>{book.book_details[0].title} </p>
-          </div>
-        </div>
-      );
-    });
+    return (
+      <React.Fragment>
+        <h1>Best Sellers in Young Adult</h1>
+        {bookList.map(book => {
+          return (
+            <React.Fragment>
+              <img src="" alt="" />
+              <div>
+                <h2>{book.book_details[0].title} </h2>
+                <p>
+                  Written by {book.book_details[0].author}
+                  <br />
+                  <br />
+                  {book.book_details[0].description}
+                </p>
+              </div>
+            </React.Fragment>
+          );
+        })};
+      </React.Fragment>
+    );
   }
 }
