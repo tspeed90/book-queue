@@ -1,15 +1,13 @@
 import React from 'react';
-import { getBooks } from '../utils/fetchBooks';
+import Browse from './Browse';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-
-    const listName = 'young-adult';
-    getBooks(listName);
+    this.listName = 'young-adult';
   }
 
   render() {
-    return <h1>Hello World</h1>;
+    return <Browse category={this.listName} />;
   }
 }

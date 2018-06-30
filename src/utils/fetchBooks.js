@@ -12,6 +12,5 @@ export const getBooks = listName => {
   const url = 'http://api.nytimes.com/svc/books/v3/lists.json';
   return fetch(`${url}?list-name=${listName}&api-key=${apiKey}`)
     .then(checkResponse)
-    .then(json => console.log(json))
     .catch(() => console.log('error retrieving book data'));
 };
