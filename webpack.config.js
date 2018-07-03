@@ -19,6 +19,10 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    hot: false,
+    inline: false
+  },
   entry: './src/index.js',
   output: {
     filename: 'main.js',

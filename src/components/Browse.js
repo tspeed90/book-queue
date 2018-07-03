@@ -7,22 +7,35 @@ export default class Browse extends React.Component {
     super(props);
 
     this.state = {
-      bookList: []
+      bookList: [],
+      imageList: []
     };
   }
 
   componentDidMount() {
     getBooks(this.props.category)
-      .then(res => this.setState({ bookList: res.results }))
+      .then(res =>
+        this.setState({
+          bookList: res.results,
+          imageList: res.images
+        })
+      )
       .then(() => console.log(this.state));
     // .catch(() => console.log('Error setting state in Browse'));
   }
 
   render() {
-    const { bookList } = this.state;
+    const { bookList, imageList } = this.state;
     return (
       <React.Fragment>
         <h1>Best Sellers in Young Adult</h1>
+        {imageList.map(image => {
+          return (
+            <span>
+              <img src={image} alt="" />
+            </span>
+          );
+        })}
         {bookList.map(book => {
           return (
             <div key={book.book_details[0].title}>
