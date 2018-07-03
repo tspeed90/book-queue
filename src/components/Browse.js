@@ -1,33 +1,47 @@
 import React from 'react';
 import { getBooks } from '../utils/fetchBooks';
+import CategoryButton from './CategoryButton';
 
 export default class Browse extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      bookList: []
+      bookList: [],
+      imageList: []
     };
   }
 
   componentDidMount() {
     getBooks(this.props.category)
-      .then(res => this.setState({ bookList: res.results }))
-      .then(() => console.log(this.state))
-      .catch(() => console.log('Error setting state in Browse'));
+      .then(res =>
+        this.setState({
+          bookList: res.results,
+          imageList: res.images
+        })
+      )
+      .then(() => console.log(this.state));
+    // .catch(() => console.log('Error setting state in Browse'));
   }
 
   render() {
-    const { bookList } = this.state;
+    const { bookList, imageList } = this.state;
     return (
       <React.Fragment>
         <h1>Best Sellers in Young Adult</h1>
+        {imageList.map(image => {
+          return (
+            <span>
+              <img src={image} alt="" />
+            </span>
+          );
+        })}
         {bookList.map(book => {
           return (
-            <React.Fragment>
+            <div key={book.book_details[0].title}>
               <img src="" alt="" />
               <div>
-                <h2>{book.book_details[0].title} </h2>
+                <h2>{book.book_details[0].title}</h2>
                 <p>
                   Written by {book.book_details[0].author}
                   <br />
@@ -35,9 +49,9 @@ export default class Browse extends React.Component {
                   {book.book_details[0].description}
                 </p>
               </div>
-            </React.Fragment>
+            </div>
           );
-        })};
+        })}
       </React.Fragment>
     );
   }
