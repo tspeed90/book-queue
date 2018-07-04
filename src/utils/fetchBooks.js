@@ -15,19 +15,17 @@ export const getBooks = listName => {
     .then(checkResponse)
     .then(res => {
       console.log(res);
-      const isbns = res.results
-        .map(book => {
-          if (book.isbns.length > 0 && book.isbns[0].hasOwnProperty('isbn10')) {
-            return book.isbns[0].isbn10;
-          } else {
-            return '';
-          }
-        })
-        .filter(isbn => isbn !== '');
+      const queries = res.results.map(book => {
+        return encodeURIComponent(
+          `intitle:${book.book_details[0].title}+inauthor:${
+            book.book_details[0].author
+          }`
+        );
+      });
       let imageRequests = [];
-      isbns.forEach(isbn => {
+      queries.forEach(query => {
         imageRequests.push(
-          fetch(`${gBooksUrl}?q=${isbn}&maxResults=1&key=${gBooksKey}`).then(
+          fetch(`${gBooksUrl}?q=${query}&maxResults=1&key=${gBooksKey}`).then(
             checkResponse
           )
         );
