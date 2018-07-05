@@ -1,6 +1,6 @@
 import React from 'react';
-import { getBooks } from '../utils/fetchBooks';
-import CategoryButton from './CategoryButton';
+import { getBooks } from '../../utils/fetchBooks';
+import CategoryButton from '../CategoryButton/CategoryButton';
 
 export default class Browse extends React.Component {
   constructor(props) {
