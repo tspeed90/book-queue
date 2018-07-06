@@ -20,8 +20,8 @@ export default class Browse extends React.Component {
           imageList: res.images
         })
       )
-      .then(() => console.log(this.state));
-    // .catch(() => console.log('Error setting state in Browse'));
+      .then(() => console.log(`${res.results}`))
+      .catch(() => console.log('Error setting state in Browse'));
   }
 
   render() {
