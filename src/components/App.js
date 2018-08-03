@@ -1,5 +1,6 @@
 import React from 'react';
 import Browse from './Browse/Browse';
+import Nav from './Nav/Nav';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -8,6 +9,11 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <Browse category={this.listName} />;
+    return (
+      <React.Fragment>
+        <Nav />
+        <Browse category={this.listName} />;
+      </React.Fragment>
+    );
   }
 }
