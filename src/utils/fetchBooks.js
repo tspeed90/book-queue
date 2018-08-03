@@ -22,32 +22,24 @@ export const getBooks = listName => {
           }`
         );
       });
-      // console.log({ queries });
-      let imageRequests = [];
+      let googleBooksRequests = [];
       queries.forEach(query => {
-        imageRequests.push(
+        googleBooksRequests.push(
           fetch(`${gBooksUrl}?q=${query}&maxResults=1&key=${gBooksKey}`).then(
             checkResponse
           )
         );
       });
-      return Promise.all(imageRequests).then(imageResponses => {
-        let booksToDisplay = imageResponses.map(googleBook => ({
-          title: googleBook.items[0].volumeInfo.title,
-          author: googleBook.items[0].volumeInfo.authors.join(' & '),
-          description: googleBook.items[0].volumeInfo.description,
-          pageCount: googleBook.items[0].volumeInfo.pageCount,
-          thumbnail: googleBook.items[0].volumeInfo.imageLinks.smallThumbnail
+      return Promise.all(googleBooksRequests).then(googleBooksResponses => {
+        let booksToDisplay = googleBooksResponses.map(book => ({
+          title: book.items[0].volumeInfo.title,
+          author: book.items[0].volumeInfo.authors.join(' & '),
+          description: book.items[0].volumeInfo.description,
+          pageCount: book.items[0].volumeInfo.pageCount,
+          thumbnail: book.items[0].volumeInfo.imageLinks.smallThumbnail
         }));
-        console.log(booksToDisplay);
         return booksToDisplay;
       });
-      // booksToDisplay.books = bestSellers;
-      // booksToDisplay.images = imageResponses.map(
-      //   item => item.items[0].volumeInfo.imageLinks.smallThumbnail
-      // );
-      // console.log('booksToDisplay', booksToDisplay);
-      // return booksToDisplay;
     })
     .catch(e => console.log('error retrieving book data', e));
 };
