@@ -12,7 +12,7 @@ export default class App extends React.Component {
     return (
       <React.Fragment>
         <Nav />
-        <Browse category={this.listName} />;
+        <Browse category={this.listName} />
       </React.Fragment>
     );
   }
