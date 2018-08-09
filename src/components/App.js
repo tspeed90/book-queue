@@ -1,8 +1,9 @@
-import React from 'react';
-import Browse from './Browse/Browse';
+import React, { Component } from 'react';
+import BrowseContainer from '../containers/BrowseContainer';
 import Nav from './Nav/Nav';
+import { store } from '../store';
 
-export default class App extends React.Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.listName = 'young-adult';
@@ -12,7 +13,7 @@ export default class App extends React.Component {
     return (
       <React.Fragment>
         <Nav />
-        <Browse category={this.listName} />
+        <BrowseContainer store={store} category={this.listName} />
       </React.Fragment>
     );
   }

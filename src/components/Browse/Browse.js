@@ -1,28 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { getBooks } from '../../utils/fetchBooks';
-import CategoryButton from '../CategoryButton/CategoryButton';
 
-export default class Browse extends React.Component {
+export default class Browse extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      bookList: []
-    };
   }
 
   componentDidMount() {
+    const { setBookList } = this.props;
     getBooks(this.props.category)
-      .then(booksToDisplay =>
-        this.setState({
-          bookList: booksToDisplay
-        })
-      )
+      .then(booksToDisplay => setBookList(booksToDisplay))
+      .then(() => console.log(this.props))
       .catch(error => console.log(error));
   }
 
   render() {
-    const { bookList } = this.state;
+    const { bookList } = this.props;
+    // console.log(this.props);
     return (
       <main>
         <h1>Best Sellers in Young Adult</h1>
