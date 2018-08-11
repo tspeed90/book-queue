@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import BrowseContainer from '../containers/BrowseContainer';
 import Nav from './Nav/Nav';
-import { store } from '../store';
+import Home from './Home/Home';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.listName = 'young-adult';
+    this.listName = 'young-adult-hardcover';
   }
 
   render() {
     return (
       <React.Fragment>
         <Nav />
-        <BrowseContainer store={store} category={this.listName} />
+        <Home />
       </React.Fragment>
     );
   }
