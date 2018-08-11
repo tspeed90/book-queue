@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
+import { Router, Link } from '@reach/router';
+
 import Nav from './Nav/Nav';
 import Home from './Home/Home';
+import BrowseContainer from '../containers/BrowseContainer';
+import { store } from '../store';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.listName = 'young-adult-hardcover';
   }
 
   render() {
     return (
       <React.Fragment>
         <Nav />
-        <Home />
+        <Router>
+          <Home path="/" />
+          <BrowseContainer
+            store={store}
+            path="/browse"
+            genre="young-adult-hardcover"
+          />
+        </Router>
       </React.Fragment>
     );
   }
