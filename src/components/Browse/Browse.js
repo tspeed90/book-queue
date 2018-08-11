@@ -7,8 +7,8 @@ export default class Browse extends Component {
   }
 
   componentDidMount() {
-    const { setBookList } = this.props;
-    getBooks(this.props.category)
+    const { setBookList, genre } = this.props;
+    getBooks(genre)
       .then(booksToDisplay => setBookList(booksToDisplay))
       .then(() => console.log(this.props))
       .catch(error => console.log(error));
@@ -16,7 +16,6 @@ export default class Browse extends Component {
 
   render() {
     const { bookList } = this.props;
-    // console.log(this.props);
     return (
       <main>
         <h1>Best Sellers in Young Adult</h1>
