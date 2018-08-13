@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import CategoryButton from '../CategoryButton/CategoryButton';
+import GenreButton from '../GenreButton/GenreButton';
 
 export default class Home extends Component {
   constructor(props) {
@@ -10,8 +10,8 @@ export default class Home extends Component {
   render() {
     return (
       <main>
-        <CategoryButton>Fiction</CategoryButton>
-        <CategoryButton>Non-Fiction</CategoryButton>
+        <GenreButton genre="hardcover-fiction">Fiction</GenreButton>
+        <GenreButton genre="hardcover-nonfiction">Non-Fiction</GenreButton>
       </main>
     );
   }
