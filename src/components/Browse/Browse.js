@@ -15,10 +15,10 @@ export default class Browse extends Component {
   }
 
   render() {
-    const { bookList } = this.props;
+    const { bookList, genre } = this.props;
     return (
       <main>
-        <h1>Best Sellers in Young Adult</h1>
+        <h1>Best Sellers in {genre}</h1>
         {bookList.map(book => {
           return (
             <div key={book.title}>

@@ -10,8 +10,10 @@ export default class Home extends Component {
   render() {
     return (
       <main>
-        <CategoryButton>Fiction</CategoryButton>
-        <CategoryButton>Non-Fiction</CategoryButton>
+        <CategoryButton genre="hardcover-fiction">Fiction</CategoryButton>
+        <CategoryButton genre="hardcover-nonfiction">
+          Non-Fiction
+        </CategoryButton>
       </main>
     );
   }

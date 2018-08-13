@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Link } from '@reach/router';
+import { Router } from '@reach/router';
 
 import Nav from './Nav/Nav';
 import Home from './Home/Home';
@@ -17,11 +17,7 @@ export default class App extends Component {
         <Nav />
         <Router>
           <Home path="/" />
-          <BrowseContainer
-            store={store}
-            path="/browse"
-            genre="young-adult-hardcover"
-          />
+          <BrowseContainer store={store} path="/browse/:genre" />
         </Router>
       </React.Fragment>
     );
