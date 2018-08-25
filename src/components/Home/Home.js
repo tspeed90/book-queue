@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import GenreButton from '../GenreButton/GenreButton';
+import genres from '../../data/genres.json';
 
 export default class Home extends Component {
   constructor(props) {
@@ -8,10 +9,22 @@ export default class Home extends Component {
   }
 
   render() {
+    console.log(genres);
     return (
       <main>
-        <GenreButton genre="hardcover-fiction">Fiction</GenreButton>
-        <GenreButton genre="hardcover-nonfiction">Non-Fiction</GenreButton>
+        {genres.results.map(genre => {
+          return (
+            <React.Fragment>
+              <GenreButton
+                key={genre.list_name_encoded}
+                genre={genre.list_name_encoded}
+              >
+                {genre.display_name}
+              </GenreButton>
+              <br />
+            </React.Fragment>
+          );
+        })}
       </main>
     );
   }
