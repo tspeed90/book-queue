@@ -8,6 +8,12 @@ const checkResponse = response => {
   return response.json();
 };
 
+const removeUndefinedBooks = responses => {
+  return responses.filter(book => {
+    return book.totalItems > 0;
+  });
+};
+
 export const getBooks = listName => {
   const nytUrl = 'http://api.nytimes.com/svc/books/v3/lists.json';
   const gBooksUrl = 'https://www.googleapis.com/books/v1/volumes';
@@ -30,16 +36,24 @@ export const getBooks = listName => {
           )
         );
       });
-      return Promise.all(googleBooksRequests).then(googleBooksResponses => {
-        let booksToDisplay = googleBooksResponses.map(book => ({
-          title: book.items[0].volumeInfo.title,
-          author: book.items[0].volumeInfo.authors.join(' & '),
-          description: book.items[0].volumeInfo.description,
-          pageCount: book.items[0].volumeInfo.pageCount,
-          thumbnail: book.items[0].volumeInfo.imageLinks.smallThumbnail
-        }));
-        return booksToDisplay;
-      });
+      return Promise.all(googleBooksRequests)
+        .then(googleBooksResponses => {
+          googleBooksResponses = removeUndefinedBooks(googleBooksResponses);
+          return googleBooksResponses;
+        })
+        .then(googleBooksResponses => {
+          console.log(googleBooksResponses);
+          let booksToDisplay = googleBooksResponses.map(book => ({
+            title: book.items[0].volumeInfo.title,
+            author: book.items[0].volumeInfo.authors.join(' & '),
+            description: book.items[0].volumeInfo.description,
+            pageCount: book.items[0].volumeInfo.pageCount,
+            thumbnail: book.items[0].volumeInfo.imageLinks
+              ? book.items[0].volumeInfo.imageLinks.smallThumbnail
+              : 'http://books.google.com/books/content?id=-uQoDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api'
+          }));
+          return booksToDisplay;
+        });
     })
     .catch(e => console.log('error retrieving book data', e));
 };
