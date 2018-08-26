@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Button from '../Button/Button';
 
@@ -10,14 +10,13 @@ export default class BookDetails extends Component {
   addBookToShelf = () => {
     const { addToShelf, book } = this.props;
     addToShelf(book);
-    console.log(this.props);
   };
 
   render() {
     const { book } = this.props;
     return (
       <main>
-        <div key={book.title}>
+        <Fragment>
           <img src={book.thumbnail} alt="" />
           <Button addBook={this.addBookToShelf}>+</Button>
           <h2>{book.title}</h2>
@@ -27,7 +26,7 @@ export default class BookDetails extends Component {
             <br />
             {book.description}
           </p>
-        </div>
+        </Fragment>
       </main>
     );
   }
