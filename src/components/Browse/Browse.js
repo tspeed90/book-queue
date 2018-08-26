@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import Button from '../Button/Button';
 import { getBooks } from '../../utils/fetchBooks';
 
 export default class Browse extends Component {
@@ -23,6 +25,7 @@ export default class Browse extends Component {
           return (
             <div key={book.title}>
               <img src={book.thumbnail} alt="" />
+              <Button>+</Button>
               <h2>{book.title}</h2>
               <p>
                 Written by {book.author}
