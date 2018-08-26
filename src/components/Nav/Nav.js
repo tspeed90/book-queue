@@ -1,12 +1,12 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { Link } from '@reach/router';
 
 const nav = () => {
   return (
     <nav>
       <div>Book Queue</div>
       <div>Tammy</div>
-      <a href="#">See your shelf</a>
+      <Link to={'/shelf'}>See your shelf</Link>
       <hr />
     </nav>
   );
