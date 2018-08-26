@@ -8,7 +8,9 @@ export default class BookDetails extends Component {
   }
 
   addBookToShelf = () => {
-    console.log('book added!');
+    const { addToShelf, book } = this.props;
+    addToShelf(book);
+    console.log(this.props);
   };
 
   render() {
