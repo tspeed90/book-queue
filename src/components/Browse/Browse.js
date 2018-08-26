@@ -12,7 +12,6 @@ export default class Browse extends Component {
     const { setBookList, genre } = this.props;
     getBooks(genre)
       .then(booksToDisplay => setBookList(booksToDisplay))
-      .then(() => console.log(this.props))
       .catch(error => console.log(error));
   }
 
@@ -22,7 +21,7 @@ export default class Browse extends Component {
       <React.Fragment>
         <h1>Best Sellers in {genre}</h1>
         {bookList.map(book => {
-          return <BookDetails book={book} {...this.props} />;
+          return <BookDetails key={book.title} book={book} {...this.props} />;
         })}
       </React.Fragment>
     );

@@ -9,7 +9,6 @@ export default class Home extends Component {
   }
 
   render() {
-    console.log(genres);
     return (
       <main>
         {genres.results.map(genre => {

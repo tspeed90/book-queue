@@ -42,7 +42,6 @@ export const getBooks = listName => {
           return googleBooksResponses;
         })
         .then(googleBooksResponses => {
-          console.log(googleBooksResponses);
           let booksToDisplay = googleBooksResponses.map(book => ({
             title: book.items[0].volumeInfo.title,
             author: book.items[0].volumeInfo.authors.join(' & '),
