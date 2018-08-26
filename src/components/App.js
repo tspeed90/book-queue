@@ -4,7 +4,7 @@ import { Router } from '@reach/router';
 import Nav from './Nav/Nav';
 import Home from './Home/Home';
 import BrowseContainer from '../containers/BrowseContainer';
-import Shelf from '../components/Shelf/Shelf';
+import ShelfContainer from '../containers/ShelfContainer';
 import { store } from '../store';
 
 export default class App extends Component {
@@ -19,7 +19,7 @@ export default class App extends Component {
         <Router>
           <Home path="/" />
           <BrowseContainer store={store} path="/browse/:genre" />
-          <Shelf path="/shelf" />
+          <ShelfContainer store={store} path="/shelf" />
         </Router>
       </React.Fragment>
     );
