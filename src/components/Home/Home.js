@@ -9,12 +9,11 @@ export default class Home extends Component {
   }
 
   render() {
-    console.log(genres);
     return (
       <main>
         {genres.results.map(genre => {
           return (
-            <React.Fragment>
+            <div key={genre.list_name}>
               <GenreButton
                 key={genre.list_name_encoded}
                 genre={genre.list_name_encoded}
@@ -22,7 +21,7 @@ export default class Home extends Component {
                 {genre.display_name}
               </GenreButton>
               <br />
-            </React.Fragment>
+            </div>
           );
         })}
       </main>

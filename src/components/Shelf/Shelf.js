@@ -6,6 +6,6 @@ export default class Shelf extends Component {
   }
 
   render() {
-    return <h1>Welcome to Your Shelf</h1>;
+    return <h1>{this.props.booksInQueue[0].title}</h1>;
   }
 }

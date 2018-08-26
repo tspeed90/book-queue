@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import BookDetails from '../BookDetails/BookDetails';
 import { getBooks } from '../../utils/fetchBooks';
 
 export default class Browse extends Component {
@@ -10,30 +12,18 @@ export default class Browse extends Component {
     const { setBookList, genre } = this.props;
     getBooks(genre)
       .then(booksToDisplay => setBookList(booksToDisplay))
-      .then(() => console.log(this.props))
       .catch(error => console.log(error));
   }
 
   render() {
     const { bookList, genre } = this.props;
     return (
-      <main>
+      <React.Fragment>
         <h1>Best Sellers in {genre}</h1>
         {bookList.map(book => {
-          return (
-            <div key={book.title}>
-              <img src={book.thumbnail} alt="" />
-              <h2>{book.title}</h2>
-              <p>
-                Written by {book.author}
-                <br />
-                <br />
-                {book.description}
-              </p>
-            </div>
-          );
+          return <BookDetails key={book.title} book={book} {...this.props} />;
         })}
-      </main>
+      </React.Fragment>
     );
   }
 }
