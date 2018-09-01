@@ -15,19 +15,17 @@ export default class BookDetails extends Component {
   render() {
     const { book } = this.props;
     return (
-      <main>
-        <Fragment>
-          <img src={book.thumbnail} alt="" />
-          <Button addBook={this.addBookToShelf}>+</Button>
-          <h2>{book.title}</h2>
-          <p>
-            Written by {book.author}
-            <br />
-            <br />
-            {book.description}
-          </p>
-        </Fragment>
-      </main>
+      <div>
+        <img src={book.thumbnail} alt={`book cover of ${book.title}`} />
+        <Button addBook={this.addBookToShelf}>+</Button>
+        <h2>{book.title}</h2>
+        <p>
+          Written by {book.author}
+          <br />
+          <br />
+          {book.description}
+        </p>
+      </div>
     );
   }
 }
