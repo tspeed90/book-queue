@@ -11,6 +11,7 @@ export default class Home extends Component {
   render() {
     return (
       <main>
+        <h1>Find Books by Category</h1>
         {genres.results.map(genre => {
           return (
             <div key={genre.list_name}>

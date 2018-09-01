@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import BookDetails from '../BookDetails/BookDetails';
 
 export default class Shelf extends Component {
   constructor(props) {
@@ -6,6 +7,14 @@ export default class Shelf extends Component {
   }
 
   render() {
-    return <h1>{this.props.booksInQueue[0].title}</h1>;
+    const { booksInQueue } = this.props;
+    return (
+      <Fragment>
+        <h1>Your Shelves</h1>
+        {booksInQueue.map(book => {
+          return <BookDetails key={book.title} book={book} />;
+        })}
+      </Fragment>
+    );
   }
 }
