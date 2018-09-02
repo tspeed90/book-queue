@@ -13,10 +13,14 @@ const Button = Styled.div`
   height: 8rem;
   margin: 0 auto;
   border-radius: 5px;
-`;
+  box-shadow: 0px 3px 7px -1px #bbb;
+  `;
 
 const GenreLink = Styled(Link)`
   padding: 2rem;
+  color: #222;
+  text-decoration: none;
+  font-size: 1.3rem;
 `;
 
 const GenreButton = ({ children, genre }) => {

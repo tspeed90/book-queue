@@ -11,7 +11,7 @@ const ActionButton = Styled.button`
   align-self: center;
   border-radius: 50%;
   border: none;
-  box-shadow: 1px 2px 7px 1px #999
+  box-shadow: 1px 2px 7px 1px #999;
   margin: 1rem;
 `;
 

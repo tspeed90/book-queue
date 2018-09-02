@@ -10,6 +10,7 @@ const Book = Styled.div`
   margin: 0 0 1rem 0;
   padding: 1.5rem;
   border-radius: 5px;
+  box-shadow: 0px 3px 7px -1px #bbb;
 `;
 
 const Cover = Styled.img`

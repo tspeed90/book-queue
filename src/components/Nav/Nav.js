@@ -3,10 +3,11 @@ import { Link } from '@reach/router';
 import Styled from 'styled-components';
 
 const Nav = Styled.nav`
-  background-color: #E5BEBE;
+  background: #E5BEBE;
   display: flex;
   justify-content: space-between;
   padding: 5px;
+
   `;
 
 const UserDetails = Styled.div`
