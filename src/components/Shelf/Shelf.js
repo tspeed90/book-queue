@@ -1,5 +1,17 @@
 import React, { Component, Fragment } from 'react';
+import Styled from 'styled-components';
+
 import BookDetails from '../BookDetails/BookDetails';
+
+const ShelfList = Styled.main`
+  width: 60%;
+  margin: 0 auto;
+`;
+
+const Title = Styled.h1`
+  text-align: center;
+  font-weight: lighter;
+`;
 
 export default class Shelf extends Component {
   constructor(props) {
@@ -9,12 +21,12 @@ export default class Shelf extends Component {
   render() {
     const { booksInQueue } = this.props;
     return (
-      <Fragment>
-        <h1>Your Shelves</h1>
+      <ShelfList>
+        <Title>Your Shelves</Title>
         {booksInQueue.map(book => {
           return <BookDetails key={book.title} book={book} />;
         })}
-      </Fragment>
+      </ShelfList>
     );
   }
 }

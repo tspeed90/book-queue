@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
+import Styled from 'styled-components';
 
 import GenreButton from '../GenreButton/GenreButton';
 import genres from '../../data/genres.json';
+
+const GenreList = Styled.main`
+  width: 60%;
+  margin: 0 auto;
+`;
+
+const Title = Styled.h1`
+  text-align: center;
+  font-weight: lighter;
+`;
 
 export default class Home extends Component {
   constructor(props) {
@@ -10,8 +21,8 @@ export default class Home extends Component {
 
   render() {
     return (
-      <main>
-        <h1>Find Books by Category</h1>
+      <GenreList>
+        <Title>Find Books by Category</Title>
         {genres.results.map(genre => {
           return (
             <div key={genre.list_name}>
@@ -25,7 +36,7 @@ export default class Home extends Component {
             </div>
           );
         })}
-      </main>
+      </GenreList>
     );
   }
 }

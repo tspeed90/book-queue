@@ -5,7 +5,7 @@ import BookDetails from '../BookDetails/BookDetails';
 import { getBooks } from '../../utils/fetchBooks';
 
 const BrowseBookList = Styled.main`
-  width: 60%;
+  width: 60%;  
   margin: 0 auto;
 `;
 
