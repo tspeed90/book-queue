@@ -21,6 +21,11 @@ const GenreLink = Styled(Link)`
   color: #222;
   text-decoration: none;
   font-size: 1.3rem;
+
+  :focus, :hover {
+    text-decoration: underline;
+    outline: none;
+  }
 `;
 
 const GenreButton = ({ children, genre }) => {
