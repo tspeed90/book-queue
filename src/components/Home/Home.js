@@ -17,6 +17,11 @@ const Title = Styled.h1`
   font-weight: lighter;
 `;
 
+const Subtitle = Styled.h2`
+  text-align: center;
+  font-weight: lighter;
+`;
+
 const GenreGridItem = Styled.div`
   margin: 1rem;
 `;
@@ -29,7 +34,8 @@ export default class Home extends Component {
   render() {
     return (
       <Fragment>
-        <Title>Find Books by Category</Title>
+        <Title>Best Seller Categories</Title>
+        <Subtitle>Select a Category Below</Subtitle>
         <GenreList>
           {genres.results.map(genre => {
             return (
