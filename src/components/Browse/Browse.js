@@ -1,8 +1,18 @@
 import React, { Component, Fragment } from 'react';
+import Styled from 'styled-components';
 
 import BookDetails from '../BookDetails/BookDetails';
 import { getBooks } from '../../utils/fetchBooks';
 
+const BrowseBookList = Styled.main`
+  width: 60%;
+  margin: 0 auto;
+`;
+
+const Title = Styled.h1`
+  text-align: center;
+  font-weight: lighter;
+`;
 export default class Browse extends Component {
   constructor(props) {
     super(props);
@@ -18,12 +28,12 @@ export default class Browse extends Component {
   render() {
     const { bookList, genre } = this.props;
     return (
-      <Fragment>
-        <h1>Best Sellers in {genre}</h1>
+      <BrowseBookList>
+        <Title>Best Sellers in {genre}</Title>
         {bookList.map(book => {
           return <BookDetails key={book.title} book={book} {...this.props} />;
         })}
-      </Fragment>
+      </BrowseBookList>
     );
   }
 }
