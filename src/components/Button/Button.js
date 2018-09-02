@@ -5,11 +5,13 @@ const ActionButton = Styled.button`
   height: 3rem;
   width: 3rem;
   font-size: 1.5rem;
-  background-color: #E5BEBE;
-  color: #333;
+  background-color: #333;
+  color: #E5BEBE;
+  font-weight: bolder;
   align-self: center;
   border-radius: 50%;
-  border: 1px solid #999;
+  border: none;
+  box-shadow: 1px 2px 7px 1px #999
   margin: 1rem;
 `;
 
