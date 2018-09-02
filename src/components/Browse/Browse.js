@@ -4,9 +4,8 @@ import Styled from 'styled-components';
 import BookDetails from '../BookDetails/BookDetails';
 import { getBooks } from '../../utils/fetchBooks';
 
-const BrowseBookList = Styled.main`
-  width: 60%;  
-  margin: 0 auto;
+const BrowseBookList = Styled.main`  
+  margin: 0 15rem;
 `;
 
 const Title = Styled.h1`
