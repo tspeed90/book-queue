@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Router } from '@reach/router';
 
-import Nav from './Nav/Nav';
 import Home from './Home/Home';
 import BrowseContainer from '../containers/BrowseContainer';
 import ShelfContainer from '../containers/ShelfContainer';
