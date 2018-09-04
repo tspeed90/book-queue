@@ -26,7 +26,7 @@ export default class Shelf extends Component {
         <ShelfList>
           <Title>Your Shelves</Title>
           {booksInQueue.map(book => {
-            return <BookDetails key={book.title} book={book} />;
+            return <BookDetails key={book.title} book={book} children="✓" />;
           })}
         </ShelfList>
       </Fragment>

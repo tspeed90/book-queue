@@ -33,7 +33,14 @@ export default class Browse extends Component {
         <BrowseBookList>
           <Title>Best Sellers in {genre}</Title>
           {bookList.map(book => {
-            return <BookDetails key={book.title} book={book} {...this.props} />;
+            return (
+              <BookDetails
+                key={book.title}
+                book={book}
+                {...this.props}
+                children="+"
+              />
+            );
           })}
         </BrowseBookList>
       </Fragment>

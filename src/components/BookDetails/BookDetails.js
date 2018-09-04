@@ -51,7 +51,7 @@ export default class BookDetails extends Component {
       <Book>
         <LeftColumn>
           <Cover src={book.thumbnail} alt={`book cover of ${book.title}`} />
-          <Button addBook={this.addBookToShelf}>+</Button>
+          <Button addBook={this.addBookToShelf}>{this.props.children}</Button>
         </LeftColumn>
         <BookInfo>
           <Title>{book.title}</Title>
