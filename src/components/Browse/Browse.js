@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Styled from 'styled-components';
 
+import Nav from '../Nav/Nav';
 import BookDetails from '../BookDetails/BookDetails';
 import { getBooks } from '../../utils/fetchBooks';
 
@@ -27,12 +28,15 @@ export default class Browse extends Component {
   render() {
     const { bookList, genre } = this.props;
     return (
-      <BrowseBookList>
-        <Title>Best Sellers in {genre}</Title>
-        {bookList.map(book => {
-          return <BookDetails key={book.title} book={book} {...this.props} />;
-        })}
-      </BrowseBookList>
+      <Fragment>
+        <Nav />
+        <BrowseBookList>
+          <Title>Best Sellers in {genre}</Title>
+          {bookList.map(book => {
+            return <BookDetails key={book.title} book={book} {...this.props} />;
+          })}
+        </BrowseBookList>
+      </Fragment>
     );
   }
 }

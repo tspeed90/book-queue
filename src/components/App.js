@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Router } from '@reach/router';
 
 import Nav from './Nav/Nav';
@@ -14,14 +14,13 @@ export default class App extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Nav />
+      <Fragment>
         <Router>
           <Home path="/" />
           <BrowseContainer store={store} path="/browse/:genre" />
           <ShelfContainer store={store} path="/shelf" />
         </Router>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

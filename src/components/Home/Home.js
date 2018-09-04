@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Styled from 'styled-components';
 
+import Nav from '../Nav/Nav';
 import GenreButton from '../GenreButton/GenreButton';
 import genres from '../../data/genres.json';
 
@@ -34,6 +35,7 @@ export default class Home extends Component {
   render() {
     return (
       <Fragment>
+        <Nav />
         <Title>Best Seller Categories</Title>
         <Subtitle>Select a Category Below</Subtitle>
         <GenreList>
