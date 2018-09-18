@@ -1,4 +1,4 @@
-import { nytKey, gBooksKey } from '../../config.js';
+import { nytKey, gBooksKey } from '../../../config.js';
 
 const checkResponse = response => {
   if (response.status !== 200) {
