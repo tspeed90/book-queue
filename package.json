@@ -8,7 +8,7 @@
     "server": "nodemon src/server/index.js",
     "test": "jest --watch",
     "build": "webpack --mode production",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
