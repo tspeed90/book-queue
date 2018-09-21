@@ -22,7 +22,7 @@ const nav = () => {
   return (
     <Nav>
       <Link to={'/'}>
-        <img src="/bq_logo.png" />
+        <img src="/public/bq_logo.png" />
       </Link>
       <UserDetails>
         Tammy
