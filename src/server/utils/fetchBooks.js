@@ -1,4 +1,6 @@
-import { nytKey, gBooksKey } from '../../../config.js';
+require('env2')('.env');
+
+const fetch = require('node-fetch');
 
 const checkResponse = response => {
   if (response.status !== 200) {
@@ -14,10 +16,10 @@ const removeUndefinedBooks = responses => {
   });
 };
 
-export const getBooks = listName => {
+const getBooks = listName => {
   const nytUrl = 'http://api.nytimes.com/svc/books/v3/lists.json';
   const gBooksUrl = 'https://www.googleapis.com/books/v1/volumes';
-  return fetch(`${nytUrl}?list-name=${listName}&api-key=${nytKey}`)
+  return fetch(`${nytUrl}?list-name=${listName}&api-key=${process.env.NYT_KEY}`)
     .then(checkResponse)
     .then(res => {
       const bestSellers = res.results;
@@ -31,9 +33,11 @@ export const getBooks = listName => {
       let googleBooksRequests = [];
       queries.forEach(query => {
         googleBooksRequests.push(
-          fetch(`${gBooksUrl}?q=${query}&maxResults=1&key=${gBooksKey}`).then(
-            checkResponse
-          )
+          fetch(
+            `${gBooksUrl}?q=${query}&maxResults=1&key=${
+              process.env.GOOGLE_BOOKS_KEY
+            }`
+          ).then(checkResponse)
         );
       });
       return Promise.all(googleBooksRequests)
@@ -56,3 +60,5 @@ export const getBooks = listName => {
     })
     .catch(e => console.log('error retrieving book data', e));
 };
+
+module.exports = { getBooks };

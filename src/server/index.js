@@ -1,11 +1,12 @@
 const express = require('express');
-const os = require('os');
+
+const { getBooks } = require('./utils/fetchBooks');
 
 const app = express();
 
 app.use(express.static('dist'));
-app.get('/api/getUsername', (req, res) =>
-  res.send({ username: os.userInfo().username })
+app.get('/api/getBooks', (req, res) =>
+  getBooks(req.query.genre).then(books => res.send(books))
 );
 
 const port = process.env.port || 8080;

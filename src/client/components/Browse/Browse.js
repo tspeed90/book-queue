@@ -3,7 +3,6 @@ import Styled from 'styled-components';
 
 import Nav from '../Nav/Nav';
 import BookDetails from '../BookDetails/BookDetails';
-import { getBooks } from '../../utils/fetchBooks';
 
 const BrowseBookList = Styled.main`  
   margin: 0 15rem;
@@ -20,7 +19,8 @@ export default class Browse extends Component {
 
   componentDidMount() {
     const { setBookList, genre } = this.props;
-    getBooks(genre)
+    fetch(`/api/getBooks?genre=${genre}`)
+      .then(response => response.json())
       .then(booksToDisplay => setBookList(booksToDisplay))
       .catch(error => console.log(error));
   }
