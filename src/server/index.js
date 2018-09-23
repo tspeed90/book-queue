@@ -5,6 +5,7 @@ const { getBooks } = require('./utils/fetchBooks');
 const app = express();
 
 app.use(express.static('dist'));
+app.use('/public', express.static('public'));
 app.get('/api/getBooks', (req, res) =>
   getBooks(req.query.genre).then(books => res.send(books))
 );
