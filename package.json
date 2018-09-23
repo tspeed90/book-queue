@@ -5,11 +5,12 @@
   "private": true,
   "scripts": {
     "client": "webpack-dev-server --mode development --open --devtool inline-source-map --hot",
-    "server": "node src/server/index.js",
+    "server": "nodemon src/server/index.js",
     "test": "jest --watch",
     "build": "webpack --mode production",
-    "start": "npm run build && npm run server",
-    "dev": "concurrently \"nodemon src/server/index.js\"  \"npm run client\""
+    "start": "node src/server/index.js",
+    "heroku-postbuild": "npm run build",
+    "dev": "concurrently \"npm run server\"  \"npm run client\""
   },
   "keywords": [],
   "author": "",
