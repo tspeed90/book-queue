@@ -4,7 +4,9 @@ import { Router } from '@reach/router';
 import Home from './Home/Home';
 import BrowseContainer from '../containers/BrowseContainer';
 import ShelfContainer from '../containers/ShelfContainer';
-import { store } from '../store';
+import { getStore } from '../redux/store';
+
+const store = getStore();
 
 export default class App extends Component {
   constructor(props) {
