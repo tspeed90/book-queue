@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 
 import Browse from '../components/Browse/Browse';
-import { setBookList, addToShelf } from '../actions/actions';
+import { setBookList, addToShelf } from '../redux/actions/book';
+import { getBookListSelector } from '../redux/selectors/bookSelector';
 
 const mapStateToProps = state => ({
-  bookList: state.bookList
+  bookList: getBookListSelector(state)
 });
 
 const mapDispatchToProps = dispatch => ({
