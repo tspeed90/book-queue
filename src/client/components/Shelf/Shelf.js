@@ -1,5 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import _ from 'lodash';
+import { array } from 'prop-types';
 import Styled from 'styled-components';
+import React, { Fragment } from 'react';
 
 import Nav from '../Nav/Nav';
 import BookDetails from '../BookDetails/BookDetails';
@@ -13,23 +15,23 @@ const Title = Styled.h1`
   font-weight: lighter;
 `;
 
-export default class Shelf extends Component {
-  constructor(props) {
-    super(props);
-  }
+const propTypes = {
+  booksInQueue: array.isRequired
+};
 
-  render() {
-    const { booksInQueue } = this.props;
-    return (
-      <Fragment>
-        <Nav />
-        <ShelfList>
-          <Title>Your Shelves</Title>
-          {booksInQueue.map(book => {
-            return <BookDetails key={book.title} book={book} children="✓" />;
-          })}
-        </ShelfList>
-      </Fragment>
-    );
-  }
-}
+const Shelf = ({ booksInQueue }) => (
+  <Fragment>
+    <Nav />
+    <ShelfList>
+      <Title>Your Shelves</Title>
+      {_.size(booksInQueue) > 0 &&
+        _.map(booksInQueue, book => {
+          return <BookDetails key={book.title} book={book} children="✓" />;
+        })}
+    </ShelfList>
+  </Fragment>
+);
+
+Shelf.propTypes = propTypes;
+
+export default Shelf;

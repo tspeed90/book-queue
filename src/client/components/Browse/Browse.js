@@ -1,5 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import _ from 'lodash';
 import Styled from 'styled-components';
+import { func, string, array } from 'prop-types';
+import React, { Component, Fragment } from 'react';
 
 import Nav from '../Nav/Nav';
 import BookDetails from '../BookDetails/BookDetails';
@@ -12,17 +14,17 @@ const Title = Styled.h1`
   text-align: center;
   font-weight: lighter;
 `;
-export default class Browse extends Component {
-  constructor(props) {
-    super(props);
-  }
 
+const propTypes = {
+  bookList: array.isRequired,
+  setBookList: func.isRequired,
+  addToShelf: func.isRequired,
+  genre: string.isRequired
+};
+
+class Browse extends Component {
   componentDidMount() {
-    const { setBookList, genre } = this.props;
-    fetch(`/api/getBooks?genre=${genre}`)
-      .then(response => response.json())
-      .then(booksToDisplay => setBookList(booksToDisplay))
-      .catch(error => console.log(error));
+    this.props.setBookList();
   }
 
   render() {
@@ -32,18 +34,23 @@ export default class Browse extends Component {
         <Nav />
         <BrowseBookList>
           <Title>Best Sellers in {genre}</Title>
-          {bookList.map(book => {
-            return (
-              <BookDetails
-                key={book.title}
-                book={book}
-                {...this.props}
-                children="+"
-              />
-            );
-          })}
+          {_.size(bookList) > 0 &&
+            _.map(bookList, book => {
+              return (
+                <BookDetails
+                  key={book.title}
+                  book={book}
+                  {...this.props}
+                  children="+"
+                />
+              );
+            })}
         </BrowseBookList>
       </Fragment>
     );
   }
 }
+
+Browse.propTypes = propTypes;
+
+export default Browse;

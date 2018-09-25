@@ -1,0 +1,16 @@
+{
+  "automock": false,
+  "setupFiles": ["./__mocks__/setupJest.js"],
+  "moduleNameMapper": {
+    "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
+    "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+  },
+  "testRegex": "/__tests__/.*.test.js$",
+  "collectCoverageFrom": [
+    "**/src/client/**/*.js",
+    "!**/node_modules/**",
+    "!**/src/client/index.js",
+    "!**/src/client/redux/selectors/*",
+    "!**/src/client/redux/store/*"
+  ]
+}
