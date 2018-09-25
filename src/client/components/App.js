@@ -1,27 +1,16 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { Router } from '@reach/router';
 
 import Home from './Home/Home';
-import BrowseContainer from '../containers/BrowseContainer';
-import ShelfContainer from '../containers/ShelfContainer';
-import { getStore } from '../redux/store';
+import Browse from '../components/Browse';
+import Shelf from '../components/Shelf';
 
-const store = getStore();
+const App = () => (
+  <Router>
+    <Home path="/" />
+    <Browse path="/browse/:genre" />
+    <Shelf path="/shelf" />
+  </Router>
+);
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Fragment>
-        <Router>
-          <Home path="/" />
-          <BrowseContainer store={store} path="/browse/:genre" />
-          <ShelfContainer store={store} path="/shelf" />
-        </Router>
-      </Fragment>
-    );
-  }
-}
+export default App;
