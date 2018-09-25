@@ -15,8 +15,8 @@ const ActionButton = Styled.button`
   margin: 1rem;
 `;
 
-const Button = ({ children, addBook }) => {
-  return <ActionButton onClick={addBook}>{children}</ActionButton>;
-};
+const Button = ({ children, addBook }) => (
+  <ActionButton onClick={addBook} children={children} />
+);
 
 export default Button;

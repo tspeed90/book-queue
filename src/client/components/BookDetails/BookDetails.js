@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Styled from 'styled-components';
+import { object } from 'prop-types';
 
 import Button from '../Button/Button';
 
@@ -35,11 +36,11 @@ const Title = Styled.h2`
   font-weight: lighter;
 `;
 
-export default class BookDetails extends Component {
-  constructor(props) {
-    super(props);
-  }
+const propTypes = {
+  book: object.isRequired
+};
 
+class BookDetails extends Component {
   addBookToShelf = () => {
     const { addToShelf, book } = this.props;
     addToShelf(book);
@@ -66,3 +67,7 @@ export default class BookDetails extends Component {
     );
   }
 }
+
+BookDetails.propTypes = propTypes;
+
+export default BookDetails;

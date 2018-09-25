@@ -2,12 +2,11 @@ import React from 'react';
 import { Link } from '@reach/router';
 import Styled from 'styled-components';
 
-const Nav = Styled.nav`
+const NavWrap = Styled.nav`
   background: #E5BEBE;
   display: flex;
   justify-content: space-between;
   padding: 5px;
-
   `;
 
 const UserDetails = Styled.div`
@@ -18,18 +17,16 @@ const UserDetails = Styled.div`
   margin-right: 1rem;
 `;
 
-const nav = () => {
-  return (
-    <Nav>
-      <Link to={'/'}>
-        <img src="/public/bq_logo.png" />
-      </Link>
-      <UserDetails>
-        Tammy
-        <Link to={'/shelf'}>See your shelf</Link>
-      </UserDetails>
-    </Nav>
-  );
-};
+const Nav = () => (
+  <NavWrap>
+    <Link to={'/'}>
+      <img src="/public/bq_logo.png" />
+    </Link>
+    <UserDetails>
+      Tammy
+      <Link to={'/shelf'}>See your shelf</Link>
+    </UserDetails>
+  </NavWrap>
+);
 
-export default nav;
+export default Nav;

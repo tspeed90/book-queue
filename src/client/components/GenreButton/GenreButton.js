@@ -28,12 +28,10 @@ const GenreLink = Styled(Link)`
   }
 `;
 
-const GenreButton = ({ children, genre }) => {
-  return (
-    <Button>
-      <GenreLink to={`/browse/${genre}`}>{children}</GenreLink>
-    </Button>
-  );
-};
+const GenreButton = ({ children, genre }) => (
+  <Button>
+    <GenreLink to={`/browse/${genre}`}>{children}</GenreLink>
+  </Button>
+);
 
 export default GenreButton;
