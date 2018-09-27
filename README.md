@@ -14,12 +14,12 @@ Routing with Reach Router
 Styled Components
 
 _Not yet added:_  
-Database
+Postgres database w/ Sequelize
 
 ## Process
 
 **Figma designs:**  
 <img src="https://res.cloudinary.com/dp6beg5nw/image/upload/v1535407087/bookQueue_zjp240.png" width="700px">
 
-**Database schema**
+**Database schema**  
 <img src="https://res.cloudinary.com/dp6beg5nw/image/upload/v1537735805/BookQueue_c4tg59.png" width="700px">
