@@ -9,23 +9,33 @@ const Button = Styled.div`
   background-color: #F3E9E9;
   color: #333;
   text-align: center;
-  width: 12rem;
-  height: 8rem;
-  margin: 0 auto;
   border-radius: 5px;
   box-shadow: 0px 3px 7px -1px #bbb;
+  width: 15rem;
+  height: fit-content;
+  margin: 0 1rem;
+
+  @media (min-width: 800px) {
+    width: 12rem;
+    height: 8rem;
+  }
   `;
 
 const GenreLink = Styled(Link)`
-  padding: 2rem;
   color: #222;
   text-decoration: none;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  padding: 1rem;
+
+  @media (min-width: 800px) {
+    padding: 2rem;
+    }
 
   :focus, :hover {
     text-decoration: underline;
     outline: none;
   }
+  
 `;
 
 const GenreButton = ({ children, genre }) => {

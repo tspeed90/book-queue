@@ -6,7 +6,11 @@ import GenreButton from '../GenreButton/GenreButton';
 import genres from '../../data/genres.json';
 
 const GenreList = Styled.main`
-  margin: 0 15rem;
+  @media (min-width: 800px) {
+    margin: 0 3rem;
+  }
+
+  margin: 0 10rem;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
@@ -24,7 +28,7 @@ const Subtitle = Styled.h2`
 `;
 
 const GenreGridItem = Styled.div`
-  margin: 1rem;
+  margin: 0 1rem 5px 1rem;
 `;
 
 export default class Home extends Component {

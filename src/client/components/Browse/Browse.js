@@ -4,8 +4,10 @@ import Styled from 'styled-components';
 import Nav from '../Nav/Nav';
 import BookDetails from '../BookDetails/BookDetails';
 
-const BrowseBookList = Styled.main`  
-  margin: 0 15rem;
+const BrowseBookList = Styled.main`
+  @media (min-width: 550px) {
+    margin: 0 5rem;
+  }
 `;
 
 const Title = Styled.h1`
