@@ -1,10 +1,10 @@
 # BookQueue (WIP)
 
+The current, unfinished project can be found [here](https://book-queue.herokuapp.com)
+
 ## Description
 
 BookQueue is an application allowing users to find popular books by category and save them to their shelf for future reading. Upon completion of a book, users can mark shelved books as read and they will be moved to a "Finished Reading" shelf.
-
-The current, unfinished project can be found [here](https://book-queue.herokuapp.com)
 
 ## Running BookQueue locally
 
