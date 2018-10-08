@@ -5,9 +5,12 @@ import Nav from '../Nav/Nav';
 import BookDetails from '../BookDetails/BookDetails';
 
 const BrowseBookList = Styled.main`
-  @media (min-width: 550px) {
-    margin: 0 5rem;
+  @media (min-width: 800px) {
+    max-width: 900px;
+    margin: 0 auto;
   }
+  width: 90%;
+  margin: 0 auto;
 `;
 
 const Title = Styled.h1`

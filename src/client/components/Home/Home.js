@@ -7,10 +7,10 @@ import genres from '../../data/genres.json';
 
 const GenreList = Styled.main`
   @media (min-width: 800px) {
-    margin: 0 3rem;
+    max-width: 1000px;
   }
-
-  margin: 0 10rem;
+  // width: 80%;
+  margin: 0 auto;
   display: flex;
   flex: 1;
   flex-wrap: wrap;

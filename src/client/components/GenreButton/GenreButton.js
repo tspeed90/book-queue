@@ -16,7 +16,7 @@ const Button = Styled.div`
   margin: 0 1rem;
 
   @media (min-width: 800px) {
-    width: 12rem;
+    width: 15rem;
     height: 8rem;
   }
   `;

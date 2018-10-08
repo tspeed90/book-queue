@@ -5,7 +5,12 @@ import Nav from '../Nav/Nav';
 import BookDetails from '../BookDetails/BookDetails';
 
 const ShelfList = Styled.main`
-  margin: 0 15rem;
+  width: 90%;
+  margin: 0 auto;
+  @media (min-width: 800px) {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 `;
 
 const Title = Styled.h1`
