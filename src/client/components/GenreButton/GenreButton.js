@@ -13,11 +13,12 @@ const Button = Styled.div`
   box-shadow: 0px 3px 7px -1px #bbb;
   width: 15rem;
   height: fit-content;
-  margin: 0 1rem;
+  margin: 0 4rem;
 
   @media (min-width: 800px) {
     width: 15rem;
     height: 8rem;
+    margin: 0 1rem;
   }
   `;
 
@@ -25,7 +26,7 @@ const GenreLink = Styled(Link)`
   color: #222;
   text-decoration: none;
   font-size: 1.2rem;
-  padding: 1rem;
+  padding: .5rem;
 
   @media (min-width: 800px) {
     padding: 2rem;
