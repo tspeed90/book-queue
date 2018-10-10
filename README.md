@@ -11,7 +11,9 @@ BookQueue is an application allowing users to find popular books by category and
 **To run locally, this project requires Node installed on your device**  
 This project uses Node 9.5.0
 
-```$ git clone https://github.com/tspeed90/book-queue.git
+```
+$ git clone https://github.com/tspeed90/book-queue.git
+$ cd book-queue
 $ npm i
 $ npm run dev // for development (uses Webpack dev server)
 $ npm start // for production (runs build script & uses Express server)
