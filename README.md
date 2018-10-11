@@ -21,14 +21,11 @@ $ npm start // for production (runs build script & uses Express server)
 
 ## Tech used
 
-Node.js/Express server  
+Node.js with an Express server  
 Built in React  
 State managed with Redux  
 Bundled with Webpack  
 Routing with [Reach Router](https://reach.tech/router)  
-Styled Components  
-APIs: [NYT Books API](https://developer.nytimes.com/books_api.json) & [Google Books API](https://developers.google.com/books/docs/overview)
-
-### _Not yet added:_
-
+styled-components
 Postgres database w/ Sequelize
+APIs: [NYT Books API](https://developer.nytimes.com/books_api.json) & [Google Books API](https://developers.google.com/books/docs/overview)
