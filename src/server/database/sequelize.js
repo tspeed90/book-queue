@@ -8,6 +8,7 @@ const databaseName = params.pathname.split('/')[1];
 
 const sequelize = new Sequelize(databaseName, username, password, {
   dialect: 'postgres',
+  host: params.hostname,
   port: params.port
 });
 
