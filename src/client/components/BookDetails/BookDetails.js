@@ -4,13 +4,18 @@ import Styled from 'styled-components';
 import Button from '../Button/Button';
 
 const Book = Styled.div`
-  display: flex;
-  flex: 0;
+display: flex;
+  flex-direction: column;
   background-color: #F3E9E9;
+  flex: 0;
   margin: 0 0 1rem 0;
   padding: 1.5rem;
   border-radius: 5px;
   box-shadow: 0px 3px 7px -1px #bbb;
+  
+@media(min-width: 700px) {
+  flex-direction: row;  
+}
 `;
 
 const Cover = Styled.img`
