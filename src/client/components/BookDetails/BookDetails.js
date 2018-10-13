@@ -40,9 +40,20 @@ const Title = Styled.h2`
   font-weight: lighter;
 `;
 
+const ReadMore = Styled.button`
+  border: none;
+  text-decoration: underline;
+  color: #E5BEBE;
+  background: inherit;
+`;
+
 export default class BookDetails extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      showFullDescription: false
+    };
   }
 
   addBookToShelf = () => {
@@ -50,8 +61,19 @@ export default class BookDetails extends Component {
     addToShelf(book);
   };
 
+  toggleReadMore = () => {
+    const { showFullDescription } = this.state;
+    this.setState({
+      showFullDescription: !showFullDescription
+    });
+  };
+
   render() {
     const { book } = this.props;
+    const { showFullDescription } = this.state;
+    const shortenedDescription = book.description
+      ? book.description.substring(0, 500)
+      : '';
     return (
       <Book>
         <LeftColumn>
@@ -64,7 +86,12 @@ export default class BookDetails extends Component {
             Written by {book.author}
             <br />
             <br />
-            {book.description}
+            {showFullDescription === true
+              ? book.description
+              : shortenedDescription}
+            <ReadMore onClick={this.toggleReadMore}>
+              {showFullDescription === true ? 'Read less' : 'Read more'}
+            </ReadMore>
           </p>
         </BookInfo>
       </Book>
