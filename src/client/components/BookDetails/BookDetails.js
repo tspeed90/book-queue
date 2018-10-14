@@ -43,7 +43,8 @@ const Title = Styled.h2`
 const ReadMore = Styled.button`
   border: none;
   text-decoration: underline;
-  color: #E5BEBE;
+  color: #555;
+  font-weight: bolder;
   background: inherit;
 `;
 
@@ -72,7 +73,7 @@ export default class BookDetails extends Component {
     const { book } = this.props;
     const { showFullDescription } = this.state;
     const shortenedDescription = book.description
-      ? book.description.substring(0, 450)
+      ? book.description.substring(0, 450) + '...'
       : '';
     return (
       <Book>
