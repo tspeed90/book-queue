@@ -30,7 +30,7 @@ const LeftColumn = Styled.div`
   margin-right: 1rem;
 `;
 
-const BookInfo = Styled.div`
+const BookInfo = Styled.article`
   display: flex;
   flex-direction: column;
 `;
@@ -38,7 +38,7 @@ const BookInfo = Styled.div`
 const Title = Styled.h2`
   margin: 0;
   font-weight: lighter;
-`;
+  `;
 
 const ReadMore = Styled.button`
   border: none;
@@ -72,7 +72,7 @@ export default class BookDetails extends Component {
     const { book } = this.props;
     const { showFullDescription } = this.state;
     const shortenedDescription = book.description
-      ? book.description.substring(0, 500)
+      ? book.description.substring(0, 450)
       : '';
     return (
       <Book>
@@ -82,10 +82,8 @@ export default class BookDetails extends Component {
         </LeftColumn>
         <BookInfo>
           <Title>{book.title}</Title>
+          Written by {book.author}
           <p>
-            Written by {book.author}
-            <br />
-            <br />
             {showFullDescription === true
               ? book.description
               : shortenedDescription}
