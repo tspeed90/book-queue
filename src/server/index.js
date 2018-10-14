@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const { getBooks } = require('./utils/fetchBooks');
-const { User } = require('../server/database/sequelize.js');
+const { User } = require('../server/models/sequelize.js');
 
 const app = express();
 
@@ -20,7 +20,8 @@ app.get('/api/users', (req, res) => {
   })
     // expect error to be thrown for now due to entering the same data each time and having a unique constraint
     .catch(err => {})
-    .then(() => User.findAll().then(users => res.json(users)));
+    .then(() => User.findAll().then(users => res.json(users)))
+    .catch(err => console.log(err));
 });
 
 app.get('*', (req, res) =>

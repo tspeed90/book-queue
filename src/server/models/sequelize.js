@@ -21,7 +21,7 @@ sequelize.authenticate().then(
   }
 );
 
-let User = sequelize.define('user', {
+const User = sequelize.define('user', {
   username: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -42,7 +42,7 @@ let User = sequelize.define('user', {
   }
 });
 
-let Book = sequelize.define('book', {
+const Book = sequelize.define('book', {
   title: {
     type: Sequelize.STRING,
     allowNull: false
@@ -62,7 +62,23 @@ let Book = sequelize.define('book', {
   thumbnail_url: Sequelize.STRING
 });
 
-User.sync();
-Book.sync();
+const UserBooks = sequelize.define('user_books', {
+  shelf_type: {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
+});
 
-module.exports = { User, Book };
+User.belongsToMany(Book, {
+  through: UserBooks
+});
+
+Book.belongsToMany(User, {
+  through: UserBooks
+});
+
+User.sync({ force: true })
+  .then(() => Book.sync({ force: true }))
+  .then(() => UserBooks.sync({ force: true }));
+
+module.exports = { User, Book, UserBooks };
