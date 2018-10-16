@@ -3,7 +3,7 @@ import Styled from 'styled-components';
 
 import Nav from '../Nav/Nav';
 import GenreButton from '../GenreButton/GenreButton';
-import genres from '../../data/genres.json';
+import { genreList } from '../../data/genres.js';
 
 const GenreList = Styled.main`
   @media (min-width: 800px) {
@@ -43,7 +43,7 @@ export default class Home extends Component {
         <Title>Best Seller Categories</Title>
         <Subtitle>Select a Category Below</Subtitle>
         <GenreList>
-          {genres.results.map(genre => {
+          {genreList.results.map(genre => {
             return (
               <GenreGridItem key={genre.list_name}>
                 <GenreButton
