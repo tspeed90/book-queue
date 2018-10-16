@@ -62,6 +62,11 @@ const Book = sequelize.define('book', {
   thumbnail_url: Sequelize.STRING
 });
 
+const Genre = sequelize.define('genres', {
+  name: Sequelize.STRING,
+  encoded_name: Sequelize.STRING
+});
+
 const UserBooks = sequelize.define('user_books', {
   shelf_type: {
     type: Sequelize.STRING,
@@ -77,8 +82,11 @@ Book.belongsToMany(User, {
   through: UserBooks
 });
 
+Book.belongsTo(Genre);
+
 User.sync({ force: true })
+  .then(() => Genre.sync())
   .then(() => Book.sync({ force: true }))
   .then(() => UserBooks.sync({ force: true }));
 
-module.exports = { User, Book, UserBooks };
+module.exports = { User, Book, UserBooks, Genre };
