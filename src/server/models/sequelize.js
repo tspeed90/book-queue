@@ -52,7 +52,7 @@ const Book = sequelize.define('book', {
     allowNull: false
   },
   description: {
-    type: Sequelize.STRING(1234),
+    type: Sequelize.TEXT,
     allowNull: false
   },
   page_count: {
@@ -82,10 +82,10 @@ Book.belongsToMany(User, {
   through: UserBooks
 });
 
-Book.belongsTo(Genre);
+Genre.hasMany(Book);
 
 User.sync({ force: true })
-  .then(() => Genre.sync())
+  .then(() => Genre.sync({ force: true }))
   .then(() => Book.sync({ force: true }))
   .then(() => UserBooks.sync({ force: true }));
 
