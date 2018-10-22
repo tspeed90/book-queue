@@ -84,9 +84,9 @@ Book.belongsToMany(User, {
 
 Genre.hasMany(Book);
 
-User.sync({ force: true })
-  .then(() => Genre.sync({ force: true }))
-  .then(() => Book.sync({ force: true }))
-  .then(() => UserBooks.sync({ force: true }));
+User.sync()
+  .then(() => Genre.sync())
+  .then(() => Book.sync())
+  .then(() => UserBooks.sync());
 
 module.exports = { User, Book, UserBooks, Genre };
