@@ -23,23 +23,20 @@ const getBooks = listName => {
     .then(checkResponse)
     .then(res => {
       const bestSellers = res.results;
-      const queries = bestSellers.map(book => {
-        return encodeURIComponent(
+      const googleBooksRequests = bestSellers.map(book => {
+        const query = encodeURIComponent(
           `intitle:${book.book_details[0].title}+inauthor:${
             book.book_details[0].author
           }`
         );
+
+        return fetch(
+          `${gBooksUrl}?q=${query}&maxResults=1&key=${
+            process.env.GOOGLE_BOOKS_KEY
+          }`
+        ).then(checkResponse);
       });
-      let googleBooksRequests = [];
-      queries.forEach(query => {
-        googleBooksRequests.push(
-          fetch(
-            `${gBooksUrl}?q=${query}&maxResults=1&key=${
-              process.env.GOOGLE_BOOKS_KEY
-            }`
-          ).then(checkResponse)
-        );
-      });
+
       return Promise.all(googleBooksRequests)
         .then(googleBooksResponses => {
           googleBooksResponses = removeUndefinedBooks(googleBooksResponses);
