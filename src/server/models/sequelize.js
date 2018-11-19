@@ -52,8 +52,7 @@ const Book = sequelize.define('book', {
     allowNull: false
   },
   description: {
-    type: Sequelize.TEXT,
-    allowNull: false
+    type: Sequelize.TEXT
   },
   page_count: {
     type: Sequelize.INTEGER,
