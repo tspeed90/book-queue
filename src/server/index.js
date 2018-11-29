@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const RateLimiter = require('limiter').RateLimiter;
 
 const { getBooks } = require('./models/getBookData');
 const {
@@ -23,7 +24,9 @@ app.get('/api/getBooks', (req, res) => {
         model: Book
       }
     ]
-  }).then(genres => res.json(genres[0].books));
+  })
+    .then(genres => res.json(genres[0].books))
+    .catch(err => console.log(err));
 });
 
 app.get('/api/users', (req, res) => {
@@ -40,6 +43,7 @@ app.get('/api/users', (req, res) => {
 });
 
 app.get('/api/triggerBookSync', async (req, res) => {
+  const limiter = new RateLimiter(5, 'minute');
   let genres = await Genre.findAll();
   if (genres.length === 0) {
     await Promise.all(
@@ -50,23 +54,26 @@ app.get('/api/triggerBookSync', async (req, res) => {
         })
       )
     );
+    genres = await Genre.findAll();
   }
 
-  let genre = await Genre.find({ where: { encoded_name: req.query.genre } });
-
-  let books = await getBooks(genre.encoded_name);
-
   await Promise.all(
-    books.map(book =>
-      Book.create({
-        title: book.title,
-        author: book.author,
-        description: book.description,
-        page_count: book.pageCount,
-        thumbnail_url: book.thumbnail,
-        genreId: genre.id
-      })
-    )
+    genres.map(genre => {
+      limiter.removeTokens(1, () => {
+        getBooks(genre.encoded_name).then(books =>
+          books.map(book =>
+            Book.create({
+              title: book.title,
+              author: book.author,
+              description: book.description,
+              page_count: book.pageCount,
+              thumbnail_url: book.thumbnail,
+              genreId: genre.id
+            })
+          )
+        );
+      });
+    })
   );
 
   res.end();
