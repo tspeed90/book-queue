@@ -43,7 +43,7 @@ app.get('/api/users', (req, res) => {
 });
 
 app.get('/api/triggerBookSync', async (req, res) => {
-  const limiter = new RateLimiter(5, 'minute');
+  const limiter = new RateLimiter(4, 'minute');
   let genres = await Genre.findAll();
   if (genres.length === 0) {
     await Promise.all(
