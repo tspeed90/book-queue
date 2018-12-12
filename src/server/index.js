@@ -32,7 +32,11 @@ app.get('/api/getBooks', (req, res) => {
 });
 
 app.post('/api/addToShelf', (req, res) => {
-  console.log(req.body);
+  UserBooks.create({
+    shelf_type: 'TO_READ',
+    userId: 2,
+    bookId: req.body.id
+  });
   res.end();
 });
 app.get('/api/users', (req, res) => {
