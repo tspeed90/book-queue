@@ -32,13 +32,20 @@ app.get('/api/getBooks', (req, res) => {
 });
 
 app.post('/api/addToShelf', (req, res) => {
-  UserBooks.create({
-    shelf_type: 'TO_READ',
-    userId: 2,
-    bookId: req.body.id
+  UserBooks.findAll({
+    where: { bookId: req.body.id }
+  }).then(res => {
+    if (res.length < 1) {
+      UserBooks.create({
+        shelf_type: 'TO_READ',
+        userId: 2,
+        bookId: req.body.id
+      });
+    }
   });
   res.end();
 });
+
 app.get('/api/users', (req, res) => {
   User.create({
     username: 'JohnHancock',
