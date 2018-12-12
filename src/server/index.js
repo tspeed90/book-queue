@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const RateLimiter = require('limiter').RateLimiter;
 
 const { getBooks } = require('./models/getBookData');
@@ -15,6 +16,7 @@ const app = express();
 
 app.use(express.static('dist'));
 app.use('/public', express.static('public'));
+app.use(bodyParser.json());
 app.get('/api/getBooks', (req, res) => {
   const { genre } = req.query;
   Genre.findAll({
@@ -29,6 +31,10 @@ app.get('/api/getBooks', (req, res) => {
     .catch(err => console.log(err));
 });
 
+app.post('/api/addToShelf', (req, res) => {
+  console.log(req.body);
+  res.end();
+});
 app.get('/api/users', (req, res) => {
   User.create({
     username: 'JohnHancock',

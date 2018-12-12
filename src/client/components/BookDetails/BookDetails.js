@@ -60,6 +60,14 @@ export default class BookDetails extends Component {
   addBookToShelf = () => {
     const { addToShelf, book } = this.props;
     addToShelf(book);
+    console.log(book);
+    fetch('/api/addToShelf', {
+      method: 'POST',
+      body: JSON.stringify(book),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
   };
 
   toggleReadMore = () => {
@@ -79,7 +87,12 @@ export default class BookDetails extends Component {
       <Book>
         <LeftColumn>
           <Cover src={book.thumbnail_url} alt={`book cover of ${book.title}`} />
-          <Button addBook={this.addBookToShelf}>{this.props.children}</Button>
+          <Button
+            addBook={this.addBookToShelf}
+            onClick={this.addBookToUsersTable}
+          >
+            {this.props.children}
+          </Button>
         </LeftColumn>
         <BookInfo>
           <Title>{book.title}</Title>

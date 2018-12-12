@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
+    "body-parser": "^1.18.3",
     "env2": "^2.2.2",
     "express": "^4.16.4",
     "limiter": "^1.1.3",
