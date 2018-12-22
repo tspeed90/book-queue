@@ -1,4 +1,5 @@
 require('env2')('.env');
+const { Book } = require('./sequelize.js');
 
 const fetch = require('node-fetch');
 
@@ -16,34 +17,46 @@ const removeUndefinedBooks = responses => {
   });
 };
 
-const getBooks = listName => {
+const getBestSellers = listName => {
   const nytUrl = 'http://api.nytimes.com/svc/books/v3/lists.json';
-  const gBooksUrl = 'https://www.googleapis.com/books/v1/volumes';
+
   return fetch(`${nytUrl}?list-name=${listName}&api-key=${process.env.NYT_KEY}`)
     .then(checkResponse)
-    .then(res => {
-      const bestSellers = res.results;
-      const googleBooksRequests = bestSellers.map(book => {
-        const query = encodeURIComponent(
-          `intitle:${book.book_details[0].title}+inauthor:${
-            book.book_details[0].author
-          }`
-        );
+    .then(res => res.results);
+};
 
-        return fetch(
-          `${gBooksUrl}?q=${query}&maxResults=1&key=${
-            process.env.GOOGLE_BOOKS_KEY
-          }`
-        ).then(checkResponse);
-      });
+const filterBookResponse = async (books, genreId) => {
+  const dbBooksInGenre = await Book.findAll({
+    where: {
+      genreId: genreId
+    }
+  });
+  return books.filter(book => {
+    for (let i = 0; i < dbBooksInGenre.length; i++) {
+      if (
+        dbBooksInGenre[i].title === book.book_details.title &&
+        dbBooksInGenre[i].author === book.book_details.author
+      ) {
+        console.log('true');
+        return false;
+      }
+    }
+    return true;
+  });
+};
 
-      return Promise.all(googleBooksRequests)
-        .then(googleBooksResponses => {
-          googleBooksResponses = removeUndefinedBooks(googleBooksResponses);
-          return googleBooksResponses;
-        })
-        .then(googleBooksResponses => {
-          let booksToDisplay = googleBooksResponses.map(book => ({
+const getBookInfo = (title, author) => {
+  const gBooksUrl = 'https://www.googleapis.com/books/v1/volumes';
+  const query = encodeURIComponent(`intitle:${title}+inauthor:${author}`);
+
+  return fetch(
+    `${gBooksUrl}?q=${query}&maxResults=1&key=${process.env.GOOGLE_BOOKS_KEY}`
+  )
+    .then(checkResponse)
+    .then(book =>
+      book.totalItems === 0
+        ? undefined
+        : {
             title: book.items[0].volumeInfo.title,
             author: book.items[0].volumeInfo.authors.join(' & '),
             description: book.items[0].volumeInfo.description,
@@ -51,11 +64,9 @@ const getBooks = listName => {
             thumbnail: book.items[0].volumeInfo.imageLinks
               ? book.items[0].volumeInfo.imageLinks.smallThumbnail
               : 'http://books.google.com/books/content?id=-uQoDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api'
-          }));
-          return booksToDisplay;
-        });
-    })
+          }
+    )
     .catch(e => console.log('error retrieving book data', e));
 };
 
-module.exports = { getBooks };
+module.exports = { getBestSellers, filterBookResponse, getBookInfo };

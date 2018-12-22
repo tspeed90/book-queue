@@ -3,7 +3,12 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const RateLimiter = require('limiter').RateLimiter;
 
-const { getBooks } = require('./models/getBookData');
+const {
+  getBooks,
+  getBestSellers,
+  getBookInfo,
+  filterBookResponse
+} = require('./models/getBookData');
 const {
   User,
   Book,
@@ -77,18 +82,25 @@ app.get('/api/triggerBookSync', async (req, res) => {
   await Promise.all(
     genres.map(genre => {
       limiter.removeTokens(1, () => {
-        getBooks(genre.encoded_name).then(books =>
-          books.map(book =>
-            Book.create({
-              title: book.title,
-              author: book.author,
-              description: book.description,
-              page_count: book.pageCount,
-              thumbnail_url: book.thumbnail,
-              genreId: genre.id
+        getBestSellers(genre.encoded_name)
+          .then(books => filterBookResponse(books, genre.id))
+          .then(books =>
+            books.forEach(async bookResult => {
+              let book = await getBookInfo(
+                bookResult.book_details[0].title,
+                bookResult.book_details[0].author
+              );
+              if (book == undefined) return;
+              Book.create({
+                title: book.title,
+                author: book.author,
+                description: book.description,
+                page_count: book.pageCount,
+                thumbnail_url: book.thumbnail,
+                genreId: genre.id
+              });
             })
-          )
-        );
+          );
       });
     })
   );
