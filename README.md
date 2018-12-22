@@ -26,6 +26,6 @@ Built in React
 State managed with Redux  
 Bundled with Webpack  
 Routing with [Reach Router](https://reach.tech/router)  
-styled-components
-Postgres database w/ Sequelize
+styled-components  
+Postgres database w/ Sequelize  
 APIs: [NYT Books API](https://developer.nytimes.com/books_api.json) & [Google Books API](https://developers.google.com/books/docs/overview)
