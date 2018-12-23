@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const RateLimiter = require('limiter').RateLimiter;
 
 const {
-  getBooks,
   getBestSellers,
   getBookInfo,
   filterBookResponse

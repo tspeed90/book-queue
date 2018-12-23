@@ -11,12 +11,6 @@ const checkResponse = response => {
   return response.json();
 };
 
-const removeUndefinedBooks = responses => {
-  return responses.filter(book => {
-    return book.totalItems > 0;
-  });
-};
-
 const getBestSellers = listName => {
   const nytUrl = 'http://api.nytimes.com/svc/books/v3/lists.json';
 
@@ -37,7 +31,6 @@ const filterBookResponse = async (books, genreId) => {
         dbBooksInGenre[i].title === book.book_details.title &&
         dbBooksInGenre[i].author === book.book_details.author
       ) {
-        console.log('true');
         return false;
       }
     }
