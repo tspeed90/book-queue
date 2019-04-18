@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
 
 const htmlPlugin = new HtmlWebpackPlugin({
   template: './public/index.html',
@@ -45,5 +45,5 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
   },
-  plugins: [new FaviconsWebpackPlugin('./public/bq_logo.png'), htmlPlugin]
+  plugins: [new WebappWebpackPlugin('./public/bq_logo.png'), htmlPlugin]
 };
