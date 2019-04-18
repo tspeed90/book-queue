@@ -18,12 +18,35 @@ const UserDetails = Styled.div`
   margin-right: 1rem;
 `;
 
+const Logo = Styled.div`
+  display: flex;
+  font-size: 1.5rem;
+  align-items: center;
+`;
+
+const LogoText = Styled.a`
+  margin: 0 1rem;
+  font-size: 1.7rem;
+  text-decoration: none;
+  color: #333;
+`;
+
 const nav = () => {
   return (
     <Nav>
-      <Link to={'/'}>
-        <img src="/public/bq_logo.png" />
-      </Link>
+      <Logo>
+        <Link
+          to={'/'}
+          style={{
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          <img src="/public/bq_logo.png" />
+          <LogoText>book queue</LogoText>
+        </Link>
+      </Logo>
       <UserDetails>
         Tammy
         <Link to={'/shelf'}>See your shelf</Link>
