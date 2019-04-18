@@ -21,10 +21,20 @@ const Title = Styled.h1`
 export default class Shelf extends Component {
   constructor(props) {
     super(props);
+    this.state = { booksInQueue: [] };
+  }
+
+  // TODO: refactor to reuse checkResponse function from getBookData.js
+  displayBooks = () => {
+    return fetch('/api/shelf').then(books => books.json());
+  };
+
+  componentDidMount() {
+    this.displayBooks().then(books => this.setState({ booksInQueue: books }));
   }
 
   render() {
-    const { booksInQueue } = this.props;
+    const { booksInQueue } = this.state;
     return (
       <Fragment>
         <Nav />

@@ -63,6 +63,17 @@ app.get('/api/users', (req, res) => {
     .catch(err => console.log(err));
 });
 
+app.get('/api/shelf', (req, res) => {
+  User.findAll({
+    where: { id: 2 },
+    include: [
+      {
+        model: Book
+      }
+    ]
+  }).then(books => res.json(books[0].books));
+});
+
 app.get('/api/triggerBookSync', async (req, res) => {
   const limiter = new RateLimiter(5, 'minute');
   let genres = await Genre.findAll();
@@ -104,6 +115,7 @@ app.get('/api/triggerBookSync', async (req, res) => {
     })
   );
 
+  res.redirect('/');
   res.end();
 });
 
